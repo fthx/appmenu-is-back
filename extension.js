@@ -221,6 +221,9 @@ export default class AppMenuIsBackExtension {
     }
 
     disable() {
+        Main.panel.menuManager.removeMenu(this._app_menu.menu);
+        this._app_menu.menu = null;
+
         this._app_menu.destroy();
         delete this._app_menu;
     }
