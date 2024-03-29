@@ -1,6 +1,6 @@
 //    App Menu Is Back
 //    GNOME Shell extension
-//    @fthx 2023
+//    @fthx 2024
 //    Almost all the code comes from GS 44 original code
 
 
@@ -34,7 +34,7 @@ const AppMenuButton = GObject.registerClass({
         this._targetApp = null;
 
         let bin = new St.Bin({ name: 'appMenu' });
-        this.add_actor(bin);
+        this.add_child(bin);
 
         this.bind_property("reactive", this, "can-focus", 0);
         this.reactive = false;
@@ -52,7 +52,7 @@ const AppMenuButton = GObject.registerClass({
             y_align: Clutter.ActorAlign.CENTER,
         });
         this._iconBox.add_effect(iconEffect);
-        this._container.add_actor(this._iconBox);
+        this._container.add_child(this._iconBox);
 
         this._iconBox.connect('style-changed', () => {
             let themeNode = this._iconBox.get_theme_node();
@@ -63,7 +63,7 @@ const AppMenuButton = GObject.registerClass({
             y_expand: true,
             y_align: Clutter.ActorAlign.CENTER,
         });
-        this._container.add_actor(this._label);
+        this._container.add_child(this._label);
 
         this._visible = !Main.overview.visible;
         if (!this._visible)
@@ -76,7 +76,7 @@ const AppMenuButton = GObject.registerClass({
             animate: true,
             hideOnStop: true,
         });
-        this._container.add_actor(this._spinner);
+        this._container.add_child(this._spinner);
 
         let menu = new AppMenu.AppMenu(this);
         this.setMenu(menu);
