@@ -16,7 +16,7 @@ export default class AppMenuIsBackExtension {
 
     disable() {
         if (Main.sessionMode.panel.left.includes('appMenu')) {
-            Main.sessionMode.panel.left.pop('appMenu');
+            Main.sessionMode.panel.left.pop();
             Main.panel._updatePanel();
         }
     }
