@@ -81,6 +81,11 @@ const AppMenuButton = GObject.registerClass({
 
         this._visible = true;
         this.reactive = true;
+        // _init() may have called hide() (when the extension is enabled while
+        // the overview is visible, e.g. during the login startup animation).
+        // Without show() here the actor stays hidden forever and only its
+        // opacity gets animated, so the button never comes back.
+        this.show();
         this.remove_all_transitions();
         this.ease({
             opacity: 255,
